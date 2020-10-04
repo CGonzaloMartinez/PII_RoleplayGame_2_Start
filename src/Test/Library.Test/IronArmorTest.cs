@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using MiddleEarth;
+using RoleplayGame;
 
 namespace Test.Library
 {
