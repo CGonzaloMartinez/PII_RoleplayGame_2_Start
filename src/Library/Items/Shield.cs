@@ -1,6 +1,6 @@
 namespace RoleplayGame
 {
-    public class Shield : IItem
+    public class Shield : IDefenseItem
     {
         public int Defense
         {
@@ -8,12 +8,16 @@ namespace RoleplayGame
             {
                 return 14;
             }
-        }
-        public int Attack
-        {
-            get
+            set
             {
-                return 0;
+                if(value >= 0)
+                {
+                    this.Defense = value;
+                }
+                else
+                {
+                    this.Defense = 0;
+                }
             }
         }
     }
