@@ -11,9 +11,9 @@ namespace Test.Library
         public void Setup()
         {
             this.dwarf = new Dwarf("Pitufo");
-            Axe axe = new Axe(150, 0);
+            Axe axe = new Axe();
             this.dwarf.Axe = axe;
-            GoldenArmor gArmor = new GoldenArmor(0, 50);
+            Helmet helmet = new Helmet();
             this.dwarf.Armor = gArmor;
         }
         [Test]

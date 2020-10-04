@@ -1,6 +1,6 @@
 namespace RoleplayGame
 {
-    public class Helmet : IItem
+    public class Helmet : IDefenseItem
     {
         public int Defense
         {
@@ -8,12 +8,16 @@ namespace RoleplayGame
             {
                 return 18;
             }
-        }
-        public int Attack
-        {
-            get
+            set
             {
-                return 0;
+                if(value >= 0)
+                {
+                    this.Defense = value;
+                }
+                else
+                {
+                    this.Defense = 0;
+                }
             }
         }
     }
