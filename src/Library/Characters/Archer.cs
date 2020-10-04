@@ -23,11 +23,11 @@ namespace RoleplayGame
             }
         }
 
-        public int DefenseValue
+     public int DefenseValue
         {
-            get
+         get
             {
-                return Helmet.DefenseValue;
+         return Helmet.DefenseValue;
             }
         }
 

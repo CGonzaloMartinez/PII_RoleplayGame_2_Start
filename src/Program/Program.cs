@@ -11,17 +11,18 @@ namespace Program
             book.Spells = new Spell[]{ new Spell() };
 
             Wizard gandalf = new Wizard("Gandalf");
-            gandalf.Staff = new Staff();
-            gandalf.SpellsBook = book;
+            IItem magicStaff = new Staff();
+            gandalf.items.Add(book);
+            gandalf.items.Add(magicStaff);
 
             Dwarf gimli = new Dwarf("Gimli");
             gimli.items.Add(new Axe());
             gimli.items.Add(new Helmet());
 
             Console.WriteLine($"Gimli has ❤️ {gimli.Health}");
-            Console.WriteLine($"Gandalf attacks Gimli with ⚔️ {gandalf.AttackValue}");
+            Console.WriteLine($"Gandalf attacks Gimli with ⚔️ {gandalf.Attack}");
 
-            gimli.ReceiveAttack(gandalf.AttackValue);
+            gimli.ReceiveAttack(gandalf.Attack);
 
             Console.WriteLine($"Gimli has ❤️ {gimli.Health}");
 

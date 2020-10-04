@@ -25,11 +25,11 @@ namespace RoleplayGame
             }
         }
 
-        public int DefenseValue
+       public int DefenseValue
         {
-            get
+           get
             {
-                return Armor.DefenseValue + Shield.DefenseValue;
+               return Armor.DefenseValue + Shield.DefenseValue;
             }
         }
 
