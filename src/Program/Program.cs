@@ -15,8 +15,8 @@ namespace Program
             gandalf.SpellsBook = book;
 
             Dwarf gimli = new Dwarf("Gimli");
-            gimli.Axe = new Axe();
-            gimli.Helmet = new Helmet();
+            gimli.items.Add(new Axe());
+            gimli.items.Add(new Helmet());
 
             Console.WriteLine($"Gimli has ❤️ {gimli.Health}");
             Console.WriteLine($"Gandalf attacks Gimli with ⚔️ {gandalf.AttackValue}");
