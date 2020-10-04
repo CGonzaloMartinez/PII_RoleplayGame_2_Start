@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-
+using System;
 
 namespace RoleplayGame
 {
@@ -98,7 +98,7 @@ namespace RoleplayGame
         {
            int totalAttack = 0;
 
-          foreach (IItem item in items)
+          foreach (IAttackItem item in items)
           {
             totalAttack += item.Attack;
           }  
@@ -109,7 +109,7 @@ namespace RoleplayGame
         public void DefenseValue()
         {
             int totalDefense = 0;
-            foreach (IItem item in items)
+            foreach (IDefenseItem item in items)
             {
                 totalDefense += item.Defense;
             }
