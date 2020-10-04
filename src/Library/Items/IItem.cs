@@ -1,8 +1,8 @@
-namespace Library.Items
+namespace RoleplayGame
 {
     public interface IItem
     {
-        int AttackValue { get; }
-        int DefenseValue{ get; }
+        int Attack { get; }
+        int Defense{ get; }
     }
 }
