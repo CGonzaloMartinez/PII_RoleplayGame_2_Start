@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-
+using System;
 namespace RoleplayGame
 {
     public abstract class Character
