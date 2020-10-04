@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+
 namespace RoleplayGame
 {
     public abstract class Character
@@ -75,7 +76,6 @@ namespace RoleplayGame
         public Character(string name)
         {
             this.Name = name;
-            this.Health = 100;
         }
 
         public List<IItem> items;
@@ -87,7 +87,7 @@ namespace RoleplayGame
 
           foreach (IItem item in items)
           {
-            totalAttack += item.attackValue;
+            totalAttack += item.Attack;
           }  
 
             this.Attack = totalAttack;
@@ -98,7 +98,7 @@ namespace RoleplayGame
             int totalDefense = 0;
             foreach (IItem item in items)
             {
-                totalDefense += item.defenseValue;
+                totalDefense += item.Defense;
             }
 
             this.TotalDefense = totalDefense;

@@ -1,8 +1,8 @@
 namespace RoleplayGame
 {
-    public class Spell
+    public class Spell : IItem 
     {
-        public int AttackValue
+        public int Attack
         {
             get
             {
@@ -10,7 +10,7 @@ namespace RoleplayGame
             }
         }
 
-        public int DefenseValue
+        public int Defense
         {
             get
             {
