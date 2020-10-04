@@ -98,9 +98,9 @@ namespace RoleplayGame
         {
            int totalAttack = 0;
 
-          foreach (IItem item in items)
+          foreach (IAttackItem item in items)
           {
-            totalAttack += item.attackValue;
+            totalAttack += item.Attack;
           }  
 
             this.Attack = totalAttack;
@@ -109,9 +109,9 @@ namespace RoleplayGame
         public void DefenseValue()
         {
             int totalDefense = 0;
-            foreach (IItem item in items)
+            foreach (IDefenseItem item in items)
             {
-                totalDefense += item.defenseValue;
+                totalDefense += item.Defense;
             }
 
             this.TotalDefense = totalDefense;
