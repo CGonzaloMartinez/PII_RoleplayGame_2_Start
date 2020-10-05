@@ -16,6 +16,7 @@ namespace Program
             gandalf.items.Add(magicStaff);
 
             Dwarf gimli = new Dwarf("Gimli");
+
             gimli.items.Add(new Axe());
             gimli.items.Add(new Helmet());
 

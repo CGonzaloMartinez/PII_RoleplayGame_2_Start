@@ -1,6 +1,6 @@
 namespace RoleplayGame
 {
-    public class Knight
+    /*public class Knight
     {
         private int health = 100;
 
@@ -57,5 +57,5 @@ namespace RoleplayGame
         {
             this.Health = 100;
         }
-    }
+    }*/
 }
