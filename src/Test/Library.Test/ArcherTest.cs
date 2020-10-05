@@ -3,18 +3,18 @@ using RoleplayGame;
 
 namespace Test.Library
 {
-    public class ElfTest
+    public class ArcherTest
     {
-        private Elf elf;
+        private Archer archer;
 
         [SetUp]
         public void Setup()
         {
-            this.elf = new Elf("Legolas");
-            Bow bow = new Bow(150, 0);
-            this.elf.Bow = bow;
-            LeatherArmor armor = new LeatherArmor(0, 50);
-            this.elf.Armor = armor;
+            this.archer = new Archer("Legolas");
+            Bow bow = new Bow();
+            this.archer.Bow = bow;
+            Armor armor = new Armor();
+            this.archer.Armor = armor;
         }
         [Test]
         /*
@@ -23,8 +23,8 @@ namespace Test.Library
         */
         public void AssignEmptyName()
         {
-            this.elf.Name = "";
-            Assert.AreEqual(this.elf.Name, "Legolas");
+            this.archer.Name = "";
+            Assert.AreEqual(this.archer.Name, "Legolas");
         }
         [Test]
         /*
@@ -33,8 +33,8 @@ namespace Test.Library
         */
         public void AssignNegativeHealth()
         {
-            this.elf.Health = -20;
-            Assert.AreEqual(this.elf.Health, 0);
+            this.archer.Health = -20;
+            Assert.AreEqual(this.archer.Health, 0);
         }
         [Test]
         /*
@@ -43,8 +43,8 @@ namespace Test.Library
         */
         public void AssignNewName()
         {
-            this.elf.Name = "Not Legolas";
-            Assert.AreEqual(this.elf.Name, "Not Legolas");
+            this.archer.Name = "Not Legolas";
+            Assert.AreEqual(this.archer.Name, "Not Legolas");
         }
         [Test]
         /*
@@ -53,8 +53,8 @@ namespace Test.Library
         */
         public void AssignNewHealth()
         {
-            this.elf.Health = 150;
-            Assert.AreEqual(this.elf.Health, 150);
+            this.archer.Health = 150;
+            Assert.AreEqual(this.archer.Health, 150);
         }
         [Test]
         /*
@@ -65,9 +65,9 @@ namespace Test.Library
         */
         public void ChangeBow()
         {
-            Bow newBow = new Bow(300, 0);
-            this.elf.Bow = newBow;
-            Assert.AreEqual(this.elf.Bow, newBow);
+            Bow newBow = new Bow();
+            this.archer.Bow = newBow;
+            Assert.AreEqual(this.archer.Bow, newBow);
         }
         [Test]
         /*
@@ -78,8 +78,8 @@ namespace Test.Library
         */
         public void RemoveBow()
         {
-            this.elf.RemoveWeapon();
-            Assert.AreEqual(this.elf.Bow, null);
+            this.archer.Bow = null;
+            Assert.AreEqual(this.archer.Bow, null);
         }
         [Test]
         /*
@@ -90,9 +90,9 @@ namespace Test.Library
         */
         public void ChangeArmor()
         {
-            LeatherArmor newArmor = new LeatherArmor(300, 0);
-            this.elf.Armor = newArmor;
-            Assert.AreEqual(this.elf.Armor, newArmor);
+            Armor newArmor = new Armor();
+            this.archer.Armor = newArmor;
+            Assert.AreEqual(this.archer.Armor, newArmor);
         }
         [Test]
         /*
@@ -103,8 +103,8 @@ namespace Test.Library
         */
         public void RemoveArmor()
         {
-            this.elf.RemoveArmor();
-            Assert.AreEqual(this.elf.Armor, null);
+            this.archer.Armor = null;
+            Assert.AreEqual(this.archer.Armor, null);
         }
         [Test]
         /*
@@ -115,9 +115,9 @@ namespace Test.Library
         */
         public void HealCharacterToFullLife()
         {
-            this.elf.Health = 50;
-            this.elf.Heal();
-            Assert.AreEqual(this.elf.Health, 100);
+            this.archer.Health = 50;
+            this.archer.Cure();
+            Assert.AreEqual(this.archer.Health, 100);
         }
         [Test]
         /*
@@ -128,7 +128,7 @@ namespace Test.Library
         */
         public void GetCharacterAttack()
         {
-            Assert.AreEqual(this.elf.Bow.Attack, this.elf.GetAttack());
+            Assert.AreEqual(this.archer.Bow.Attack, this.archer.Attack);
         }
         [Test]
         /*
@@ -138,9 +138,8 @@ namespace Test.Library
         */
         public void TakeDamageArmorAbsorbsIt()
         {
-            this.elf.ReceiveDamage(25);
-            Assert.AreEqual(this.elf.Armor.Defense, 25);
-            Assert.AreEqual(this.elf.Health, 100);
+            this.archer.ReceiveAttack(25);
+            Assert.AreEqual(this.archer.Health, 100);
         }
         [Test]
         /*
@@ -150,23 +149,9 @@ namespace Test.Library
         */
         public void TakeDamageMoreThanAvailableLife()
         {
-            this.elf.ReceiveDamage(200);
-            Assert.AreEqual(this.elf.Armor.Defense, 0);
-            Assert.AreEqual(this.elf.Health, 0);
+            this.archer.ReceiveAttack(200);
+            Assert.AreEqual(this.archer.Health, 0);
         }
-        [Test]
-        /*
-            Este test asegura que si el personaje no tiene armadura,
-            el daño recibido se resta directamente de la vida
-            del personaje.
-        */
-        public void TakeDamageNoArmor()
-        {
-            this.elf.Armor.Defense = 0;
-            this.elf.ReceiveDamage(50);
-            Assert.AreEqual(this.elf.Health, 50);
-        }
-
     }
 
 }
