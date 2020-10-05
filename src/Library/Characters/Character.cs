@@ -25,13 +25,8 @@ namespace RoleplayGame
                 }
             }
         }
-        public int Attack
-        {
-            get
-            {
-                return this.DefenseValue();
-            }
-        }
+        public abstract int Attack{get;}
+
         private string name;
         public string Name
         {
@@ -47,53 +42,18 @@ namespace RoleplayGame
                 }
             }
         }
-        public int TotalDefense
-        {
-            get
-            {
-                return this.DefenseValue();
-            }
-        }
-        
+        public abstract int Defense{get;}
 
         public Character(string name)
         {
             this.Name = name;
-            this.items = new List<IItem>();
         }
-
-        public List<IItem> items;
-        
-
-        private int AttackValue()
-        {
-           int totalAttack = 0;
-
-          foreach (IAttackItem item in items)
-          {
-            totalAttack += item.Attack;
-          }
-
-            return totalAttack;
-        }
-
-        private int DefenseValue()
-        {
-            int totalDefense = 0;
-            foreach (IDefenseItem item in items)
-            {
-                totalDefense += item.Defense;
-            }
-
-            return totalDefense;
-        }
-
 
         public void ReceiveAttack(int power)
         {
-            if (this.TotalDefense < power)
+            if (this.Defense < power)
             {
-                this.Health -= power - this.TotalDefense;
+                this.Health -= power - this.Defense;
             }
         }
 
