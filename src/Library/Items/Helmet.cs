@@ -8,17 +8,6 @@ namespace RoleplayGame
             {
                 return 18;
             }
-            set
-            {
-                if(value >= 0)
-                {
-                    this.Defense = value;
-                }
-                else
-                {
-                    this.Defense = 0;
-                }
-            }
         }
     }
 }
