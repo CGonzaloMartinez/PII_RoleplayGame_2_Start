@@ -3,7 +3,7 @@ using RoleplayGame;
 
 namespace Test.Library
 {
-    public class AxeTest
+    public class HelmetTest
     {
         private Axe axe;
 
@@ -16,10 +16,10 @@ namespace Test.Library
             Se le asigna un valor para checkear que la implementacion
             del setter no este fallando.
         */
-        public void AxeAttackDamage()
+        public void HelmetDefense()
         {
-            Axe axe = new Axe();
-            Assert.AreEqual(axe.Attack, 25);
+            Helmet helmet = new Helmet();
+            Assert.AreEqual(helmet.Defense, 18);
         }
     }
 }

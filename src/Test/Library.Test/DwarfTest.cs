@@ -10,46 +10,48 @@ namespace Test.Library
         [SetUp]
         public void Setup()
         {
-            this.dwarf = new Dwarf("Pitufo");
+            dwarf = new Dwarf("Gimli");
             Axe axe = new Axe();
-            this.dwarf.Axe = axe;
             Helmet helmet = new Helmet();
-            this.dwarf.Armor = gArmor;
+            Shield shield = new Shield();
+            dwarf.Axe = axe;
+            dwarf.Helmet = helmet;
+            dwarf.Shield = shield;
         }
         [Test]
         /*
-            Se le asigna un valor invalido para checkear que la implementacion
-            del setter siempre de un valor valido y no este fallando.
+            Es necesario probar asignar un valor inválido, para asegurar que 
+            no está fallando la validación del setter del Atributo.
         */
         public void AssignEmptyName()
         {
             this.dwarf.Name = "";
-            Assert.AreEqual(this.dwarf.Name, "Pitufo");
+            Assert.AreEqual(this.dwarf.Name, "Gimli");
         }
         [Test]
         /*
-            Se le asigna un valor invalido para checkear que la implementacion
-            del setter siempre de un valor valido y no este fallando.
+            Es necesario probar asignar un valor inválido, para asegurar que 
+            no está fallando la validación del setter del Atributo.
         */
         public void AssignNegativeHealth()
         {
-            this.dwarf.Health = -35;
+            this.dwarf.Health = -20;
             Assert.AreEqual(this.dwarf.Health, 0);
         }
         [Test]
         /*
-            Se le asigna un valor valido para checkear que la
-            implementacion del setter no este fallando.
+            Es necesario probar asignar un valor válido, para asegurar que 
+            no está fallando la implementación del setter del Atributo.
         */
         public void AssignNewName()
         {
-            this.dwarf.Name = "Something Else";
-            Assert.AreEqual(this.dwarf.Name, "Something Else");
+            this.dwarf.Name = "Not Gimli";
+            Assert.AreEqual(this.dwarf.Name, "Not Gimli");
         }
         [Test]
         /*
-            Se le asigna un valor valido para checkear que la
-            implementacion del setter no este fallando.
+            Es necesario probar asignar un valor válido, para asegurar que 
+            no está fallando la implementación del setter del Atributo.
         */
         public void AssignNewHealth()
         {
@@ -58,49 +60,53 @@ namespace Test.Library
         }
         [Test]
         /*
-            Es necesario probar que el método AxeSwap cambie el hacha
-            por una nueva, ya que esta es la finalidad del mismo. 
-            Si este test fallara, entonces estaría mal el método.
+            Es necesario probar que la implementación del método ChangeBow
+            efectivamente cambie el arco por uno nuevo, ya que esta es la finalidad
+            del mismo. Si se cambiara la implementación y este test fallara, entonces
+            estaría mal implementado el método.
         */
-        public void AxeSwap()
+        public void ChangeAxe()
         {
-            Axe newAxe = new Axe(200, 0);
+            Axe newAxe = new Axe();
             this.dwarf.Axe = newAxe;
             Assert.AreEqual(this.dwarf.Axe, newAxe);
         }
         [Test]
         /*
-            Es necesario probar que el método AxeRemoval remueva 
-            el hacha ya que esta es la finalidad del mismo. 
-            Si este test fallara, entonces estaría mal el método.
+            Es necesario probar que la implementación del método RemoveBow
+            efectivamente elimine el arco del personaje, ya que esta es la finalidad
+            del mismo. Si se cambiara la implementación y este test fallara, entonces
+            estaría mal implementado el método.
         */
-        public void AxeRemoval()
+        public void RemoveAxe()
         {
-            this.dwarf.RemoveWeapon();
+            this.dwarf.Axe = null;
             Assert.AreEqual(this.dwarf.Axe, null);
         }
         [Test]
         /*
-            Es necesario probar que el método ArmorSwap cambie la armadura
-            por una nueva, ya que esta es la finalidad del mismo. 
-            Si este test fallara, entonces estaría mal el método.
+            Es necesario probar que la implementación del método ChangeArmor
+            efectivamente cambie la armadura por una nueva, ya que esta es la finalidad
+            del mismo. Si se cambiara la implementación y este test fallara, entonces
+            estaría mal implementado el método.
         */
-        public void ArmorSwap()
+        public void ChangeHelmet()
         {
-            GoldenArmor newArmor = new GoldenArmor(200, 0);
-            this.dwarf.Armor = newArmor;
-            Assert.AreEqual(this.dwarf.Armor, newArmor);
+            Helmet newHelmet = new Helmet();
+            this.dwarf.Helmet = newHelmet;
+            Assert.AreEqual(this.dwarf.Helmet, newHelmet);
         }
         [Test]
         /*
-            Es necesario probar que el método ArmorRemoval remueva 
-            la armadura ya que esta es la finalidad del mismo. 
-            Si este test fallara, entonces estaría mal el método.
+            Es necesario probar que la implementación del método RemoveArmor
+            efectivamente elimine la armadura del personaje, ya que esta es la finalidad
+            del mismo. Si se cambiara la implementación y este test fallara, entonces
+            estaría mal implementado el método.
         */
-        public void ArmorRemoval()
+        public void RemoveHelmet()
         {
-            this.dwarf.RemoveArmor();
-            Assert.AreEqual(this.dwarf.Armor, null);
+            this.dwarf.Helmet = null;
+            Assert.AreEqual(this.dwarf.Helmet, null);
         }
         [Test]
         /*
@@ -109,10 +115,10 @@ namespace Test.Library
             Si se hicieran cambios en Heal o en los valores de vida del personaje,
             y este test fallara entonces estaría mal la implementación del metodo Heal.
         */
-        public void HealCharacterToMaxHealthPoints()
+        public void HealCharacterToFullLife()
         {
             this.dwarf.Health = 50;
-            this.dwarf.Heal();
+            this.dwarf.Cure();
             Assert.AreEqual(this.dwarf.Health, 100);
         }
         [Test]
@@ -124,7 +130,7 @@ namespace Test.Library
         */
         public void GetCharacterAttack()
         {
-            Assert.AreEqual(this.dwarf.Axe.Attack, this.dwarf.GetAttack());
+            Assert.AreEqual(this.dwarf.Axe.Attack, this.dwarf.Attack);
         }
         [Test]
         /*
@@ -134,8 +140,7 @@ namespace Test.Library
         */
         public void TakeDamageArmorAbsorbsIt()
         {
-            this.dwarf.ReceiveDamage(25);
-            Assert.AreEqual(this.dwarf.Armor.Defense, 25);
+            this.dwarf.ReceiveAttack(32);
             Assert.AreEqual(this.dwarf.Health, 100);
         }
         [Test]
@@ -144,25 +149,10 @@ namespace Test.Library
             pero recibe un daño mayor a la suma de ambos, entonces ambos
             valores quedan en 0.
         */
-        public void TakeDamageMoreThanArmorPlusHealthPoints()
+        public void TakeDamageMoreThanAvailableLife()
         {
-            this.dwarf.ReceiveDamage(200);
-            Assert.AreEqual(this.dwarf.Armor.Defense, 0);
+            this.dwarf.ReceiveAttack(200);
             Assert.AreEqual(this.dwarf.Health, 0);
         }
-        [Test]
-        /*
-            Este test asegura que si el personaje no tiene armadura,
-            el daño recibido se resta directamente de la vida
-            del personaje.
-        */
-        public void TakeDamageWithNoArmor()
-        {
-            this.dwarf.Armor.Defense = 0;
-            this.dwarf.ReceiveDamage(50);
-            Assert.AreEqual(this.dwarf.Health, 50);
-        }
-
     }
-
 }
