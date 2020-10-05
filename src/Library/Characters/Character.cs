@@ -59,6 +59,7 @@ namespace RoleplayGame
         public Character(string name)
         {
             this.Name = name;
+            this.items = new List<IItem>();
         }
 
         public List<IItem> items;
