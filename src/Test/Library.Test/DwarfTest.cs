@@ -10,11 +10,8 @@ namespace Test.Library
         [SetUp]
         public void Setup()
         {
-            this.dwarf = new Dwarf("Pitufo");
+            Dwarf dwarf = new Dwarf("Pitufo");
             Axe axe = new Axe();
-            this.dwarf.Axe = axe;
-            Helmet helmet = new Helmet();
-            this.dwarf.Armor = gArmor;
         }
         [Test]
         /*
@@ -56,52 +53,8 @@ namespace Test.Library
             this.dwarf.Health = 150;
             Assert.AreEqual(this.dwarf.Health, 150);
         }
-        [Test]
-        /*
-            Es necesario probar que el método AxeSwap cambie el hacha
-            por una nueva, ya que esta es la finalidad del mismo. 
-            Si este test fallara, entonces estaría mal el método.
-        */
-        public void AxeSwap()
-        {
-            Axe newAxe = new Axe(200, 0);
-            this.dwarf.Axe = newAxe;
-            Assert.AreEqual(this.dwarf.Axe, newAxe);
-        }
-        [Test]
-        /*
-            Es necesario probar que el método AxeRemoval remueva 
-            el hacha ya que esta es la finalidad del mismo. 
-            Si este test fallara, entonces estaría mal el método.
-        */
-        public void AxeRemoval()
-        {
-            this.dwarf.RemoveWeapon();
-            Assert.AreEqual(this.dwarf.Axe, null);
-        }
-        [Test]
-        /*
-            Es necesario probar que el método ArmorSwap cambie la armadura
-            por una nueva, ya que esta es la finalidad del mismo. 
-            Si este test fallara, entonces estaría mal el método.
-        */
-        public void ArmorSwap()
-        {
-            GoldenArmor newArmor = new GoldenArmor(200, 0);
-            this.dwarf.Armor = newArmor;
-            Assert.AreEqual(this.dwarf.Armor, newArmor);
-        }
-        [Test]
-        /*
-            Es necesario probar que el método ArmorRemoval remueva 
-            la armadura ya que esta es la finalidad del mismo. 
-            Si este test fallara, entonces estaría mal el método.
-        */
-        public void ArmorRemoval()
-        {
-            this.dwarf.RemoveArmor();
-            Assert.AreEqual(this.dwarf.Armor, null);
-        }
+
+        
         [Test]
         /*
             Es necesario probar que la implementación del método Heal
@@ -112,7 +65,7 @@ namespace Test.Library
         public void HealCharacterToMaxHealthPoints()
         {
             this.dwarf.Health = 50;
-            this.dwarf.Heal();
+            this.dwarf.Cure();
             Assert.AreEqual(this.dwarf.Health, 100);
         }
         [Test]
@@ -124,7 +77,7 @@ namespace Test.Library
         */
         public void GetCharacterAttack()
         {
-            Assert.AreEqual(this.dwarf.Axe.Attack, this.dwarf.GetAttack());
+            Assert.AreEqual(this.dwarf.Axe.Attack, this.dwarf.Attack);
         }
         [Test]
         /*
@@ -134,8 +87,8 @@ namespace Test.Library
         */
         public void TakeDamageArmorAbsorbsIt()
         {
-            this.dwarf.ReceiveDamage(25);
-            Assert.AreEqual(this.dwarf.Armor.Defense, 25);
+            this.dwarf.ReceiveAttack(25);
+            Assert.AreEqual(this.dwarf.Defense, 7);
             Assert.AreEqual(this.dwarf.Health, 100);
         }
         [Test]
@@ -146,23 +99,9 @@ namespace Test.Library
         */
         public void TakeDamageMoreThanArmorPlusHealthPoints()
         {
-            this.dwarf.ReceiveDamage(200);
-            Assert.AreEqual(this.dwarf.Armor.Defense, 0);
+            this.dwarf.ReceiveAttack(132);
+            Assert.AreEqual(this.dwarf.Defense, 0);
             Assert.AreEqual(this.dwarf.Health, 0);
         }
-        [Test]
-        /*
-            Este test asegura que si el personaje no tiene armadura,
-            el daño recibido se resta directamente de la vida
-            del personaje.
-        */
-        public void TakeDamageWithNoArmor()
-        {
-            this.dwarf.Armor.Defense = 0;
-            this.dwarf.ReceiveDamage(50);
-            Assert.AreEqual(this.dwarf.Health, 50);
-        }
-
     }
-
 }
