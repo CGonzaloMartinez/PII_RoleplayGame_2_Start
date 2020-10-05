@@ -2,13 +2,11 @@ namespace RoleplayGame
 {
     public class Wizard: Character
     {
-
-
         public SpellsBook spellsBook {get;set;}
         public Staff staff           {get;set;}
 
         public Wizard(string name)
-        : base (name) 
+        : base (name)
         {
         }
 

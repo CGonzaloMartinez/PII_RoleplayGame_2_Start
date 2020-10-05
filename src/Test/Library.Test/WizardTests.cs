@@ -5,10 +5,11 @@ namespace Test.Library
 {
      public class WizardTests
     {
-        string expectedName = "validName";
+        string expectedName = "Merlin";
         int expectedHealth = 100;
         int expectedInorrectHealth = 0;
 
+        Wizard testingWizard = new Wizard("Merlin");
         
 
         [Test]    
@@ -20,8 +21,8 @@ namespace Test.Library
         */   
         public void WizardCorrectName()
         {
-            Wizard testingWizard = new Wizard("");
-            testingWizard.Name = "validName";
+            testingWizard.Name = "";
+            testingWizard.Name = "Merlin";
             Assert.AreEqual(expectedName, testingWizard.Name);   
         }
 
@@ -35,7 +36,7 @@ namespace Test.Library
 
         public void WizardInorrectName()
         {
-            Wizard testingWizard = new Wizard("validName");
+            Wizard testingWizard = new Wizard("Merlin");
             testingWizard.Name = "";
             Assert.AreEqual(expectedName, testingWizard.Name);   
         }
@@ -43,7 +44,7 @@ namespace Test.Library
         [Test] 
 
          /*
-            Es necesario validar que al instanciarse un objeto de la clase Wizard, su atributo "Health" sea igual a 80,
+            Es necesario validar que al instanciarse un objeto de la clase Wizard, su atributo "Health" sea igual a 100,
             que es la vida que poseen los Wizards de este mundo creado.
         */ 
            public void WizardCorrectHealth()
@@ -60,7 +61,6 @@ namespace Test.Library
         */ 
            public void WizardInorrectHealth()
         {
-            Wizard testingWizard = new Wizard("Merlin");
             testingWizard.Health = -1;
             Assert.AreEqual(expectedInorrectHealth, testingWizard.Health);   
         }
@@ -71,11 +71,10 @@ namespace Test.Library
         /*
         Es necesario validar que el método Heal implementado, recupere la vida inicial del mago.
         */
-        public void TestingHealing()
+        public void TestingCure()
         {
-            Wizard testingWizard = new Wizard("Merlin");
             testingWizard.Health = 10;
-            testingWizard.Heal();
+            testingWizard.Cure();
             Assert.AreEqual(expectedHealth, testingWizard.Health);
         }
 
@@ -85,15 +84,16 @@ namespace Test.Library
         Es necesario validar que el método GetWizardAttack implementado, asigne como ataque del personaje
         la suma del ataque de su FireSpear, de su MagicWand, y del Spell de su Spellbook.
         */
-        public void TestingGetWizardAttack()
+        public void TestingWizardAttack()
         {
-            Wizard wizard1 = new Wizard("Phoenix");
-            Spell firstSpell = new Spell(70,"Fireball");
-            wizard1.FireSpear = new FireSpear(50,0);
-            wizard1.SpellBook = new Spellbook(firstSpell);
-            wizard1.MagicWand = new MagicWand(30,30);
-            int expectedAttack = 150;
-            Assert.AreEqual(expectedAttack, wizard1.GetWizardAttack());
+            SpellsBook book = new SpellsBook();
+            book.Spells = new Spell[]{ new Spell() };
+            testingWizard.spellsBook = book;
+
+            testingWizard.staff = new Staff();
+
+            int expectedAttack = 170;
+            Assert.AreEqual(expectedAttack, testingWizard.Attack);
         }
 
         [Test]
@@ -104,78 +104,70 @@ namespace Test.Library
 
         */
 
-        public void TestingReceiveDamage()
+        public void TestingReceiveAttack()
+        {  
+
+            Staff magicStaff = new Staff();
+            testingWizard.staff = magicStaff;
+
+            SpellsBook book = new SpellsBook();
+            book.Spells = new Spell[]{ new Spell() };
+            testingWizard.spellsBook = book;
+
+            int expectedLife = 100;
+            testingWizard.ReceiveAttack(90);
+            Assert.AreEqual(expectedLife, testingWizard.Health);
+        }
+
+
+        [Test]
+
+     
+        public void TestingRemoveStaff()
         {
-            Wizard wizard1 = new Wizard("Phoenix");
-            Spell firstSpell = new Spell(70,"Fireball");
-            wizard1.FireSpear = new FireSpear(50,0);
-            wizard1.SpellBook = new Spellbook(firstSpell);
-            wizard1.MagicWand = new MagicWand(30,30);
-            int expectedLife = 20;
-            wizard1.ReceiveDamage(90);
-            Assert.AreEqual(expectedLife, wizard1.Health);
+            Staff magicStaff = new Staff();
+            testingWizard.staff = magicStaff;
+            testingWizard.staff = null;
+            Assert.AreEqual(testingWizard.staff,null);
+        }
+
+
+        
+        public void TestingChangeStaff()
+        {
+            Staff magicStaff = new Staff();
+            testingWizard.staff = magicStaff;
+
+            Staff magicStaff2 = new Staff();
+            testingWizard.staff = magicStaff2;
+          
+            Assert.AreEqual(testingWizard.staff, magicStaff2);
         }
 
         [Test]
 
-        /*
-            Es necesario corroborar que el método ChangeWand implementado efectivamente cumpla la función esperada,
-            esto es, reemplazar una MagicWand por una nueva.
-        */
-        public void TestingChangeWand()
+        public void TestingRemoveSpellsBook()
         {
-           Wizard wizard1 = new Wizard("Phoenix"); 
-           wizard1.MagicWand = new MagicWand(30,30);
-           MagicWand newMagicWand = new MagicWand(50,50);
-           wizard1.ChangeWand(newMagicWand);
-           Assert.AreEqual(newMagicWand, wizard1.MagicWand);
+            SpellsBook magicBook = new SpellsBook();
+            testingWizard.spellsBook = magicBook;
+            testingWizard.spellsBook = null;
+            Assert.AreEqual(testingWizard.spellsBook,null);
+        }
+        
+           [Test]
 
+        public void TestingChangeSpellsBook()
+        {
+            SpellsBook magicBook = new SpellsBook();
+            testingWizard.spellsBook = magicBook;
+
+            SpellsBook magicBook2 = new SpellsBook();
+            testingWizard.spellsBook = magicBook2;
+          
+            Assert.AreEqual(testingWizard.spellsBook,magicBook2);
         }
 
-        [Test]
 
-        /*
-            Es necesario corroborar que el método ChangeSpear implementado efectivamente cumpla la función esperada,
-            esto es, reemplazar una FireSpear por una nueva que sea asignada.
-        */
-          public void TestingChangeSpear()
-        {
-           Wizard wizard1 = new Wizard("Phoenix"); 
-           wizard1.FireSpear = new FireSpear(30,30);
-           FireSpear newFireSpear = new FireSpear(50,50);
-           wizard1.ChangeSpear(newFireSpear);
-           Assert.AreEqual(newFireSpear, wizard1.FireSpear);
-
-        }
-
-        [Test]
-
-        /*
-            Es necesario corroborar que el método RemoveWand implementado efectivamente le quite éste item al mago
-        */
-        public void TestingRemoveWand()
-        {
-            Wizard wizard1 = new Wizard("Phoenix"); 
-            MagicWand wand = new MagicWand(30,30);
-            wizard1.MagicWand = wand;
-            wizard1.RemoveWand();
-            Assert.AreEqual(wizard1.MagicWand,null);
-        }
-
-        [Test]
-
-
-        /*
-            Es necesario corroborar que el método RemoveSpear implementado efectivamente le quite éste item al mago
-        */
-        public void TestingRemoveSpear()
-        {
-            Wizard wizard1 = new Wizard("Phoenix"); 
-            FireSpear spear = new FireSpear(30,30);
-            wizard1.FireSpear = spear;
-            wizard1.RemoveSpear();
-            Assert.AreEqual(wizard1.FireSpear,null);
-        }
 
     }
 }
