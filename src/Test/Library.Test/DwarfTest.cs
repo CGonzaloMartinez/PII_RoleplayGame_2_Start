@@ -12,6 +12,11 @@ namespace Test.Library
         {
             Dwarf dwarf = new Dwarf("Pitufo");
             Axe axe = new Axe();
+            Helmet helmet = new Helmet();
+            Shield shield = new Shield();
+            dwarf.Axe = axe;
+            dwarf.Helmet = helmet;
+            dwarf.Shield = shield;
         }
         [Test]
         /*
