@@ -4,7 +4,7 @@ namespace RoleplayGame
 {
     public abstract class Character
     {
-        private int health;
+        private int health = 100;
 
         public int Health
         {
@@ -25,25 +25,11 @@ namespace RoleplayGame
                 }
             }
         }
-
-        private int attack;
         public int Attack
         {
             get
             {
-                return this.attack;
-            }
-
-            set
-            {
-                if (value >= 0)
-                {
-                    this.attack = value;
-                }
-                else
-                {
-                    this.attack = 0;
-                }
+                return this.DefenseValue();
             }
         }
         private string name;
@@ -61,26 +47,11 @@ namespace RoleplayGame
                 }
             }
         }
-
-        private int totalDefense;
-
         public int TotalDefense
         {
             get
             {
-                return this.totalDefense;
-            }
-
-            set
-            {
-                if (value >= 0)
-                {
-                    this.totalDefense = value;
-                }
-                else
-                {
-                    this.totalDefense = 0;
-                }
+                return this.DefenseValue();
             }
         }
         
@@ -93,19 +64,19 @@ namespace RoleplayGame
         public List<IItem> items;
         
 
-        public void AttackValue()
+        private int AttackValue()
         {
            int totalAttack = 0;
 
           foreach (IAttackItem item in items)
           {
             totalAttack += item.Attack;
-          }  
+          }
 
-            this.Attack = totalAttack;
+            return totalAttack;
         }
 
-        public void DefenseValue()
+        private int DefenseValue()
         {
             int totalDefense = 0;
             foreach (IDefenseItem item in items)
@@ -113,7 +84,7 @@ namespace RoleplayGame
                 totalDefense += item.Defense;
             }
 
-            this.TotalDefense = totalDefense;
+            return totalDefense;
         }
 
 
@@ -121,7 +92,7 @@ namespace RoleplayGame
         {
             if (this.TotalDefense < power)
             {
-                this.Health -= power - this.totalDefense;
+                this.Health -= power - this.TotalDefense;
             }
         }
 
