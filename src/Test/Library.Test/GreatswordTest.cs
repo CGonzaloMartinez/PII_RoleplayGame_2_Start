@@ -3,9 +3,9 @@ using RoleplayGame;
 
 namespace Test.Library
 {
-    public class HelmetTest
+    public class GreatswordTest
     {
-        private Helmet helmet;
+        private Greatsword greatsword;
 
         [SetUp]
         public void Setup()
@@ -16,10 +16,10 @@ namespace Test.Library
             Se le asigna un valor para checkear que la implementacion
             del setter no este fallando.
         */
-        public void HelmetDefense()
+        public void GreatSwordAttackDamage()
         {
-            Helmet helmet = new Helmet();
-            Assert.AreEqual(helmet.Defense, 18);
+            Greatsword greatsword = new Greatsword();
+            Assert.AreEqual(greatsword.Attack, 45);
         }
     }
 }

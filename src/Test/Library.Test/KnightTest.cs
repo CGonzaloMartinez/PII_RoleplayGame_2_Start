@@ -3,20 +3,21 @@ using RoleplayGame;
 
 namespace Test.Library
 {
-    public class DwarfTest
+    public class KnightTest
     {
-        private Dwarf dwarf;
+        private Knight knight;
 
         [SetUp]
         public void Setup()
         {
-            dwarf = new Dwarf("Gimli");
-            Axe axe = new Axe();
+            knight = new Knight("Arturo");
+            Greatsword gsword = new Greatsword();
+            knight.Greatsword = gsword;
+            HeavyArmor hArmor = new HeavyArmor();
+            knight.HeavyArmor = hArmor;
             Helmet helmet = new Helmet();
-            Shield shield = new Shield();
-            dwarf.Axe = axe;
-            dwarf.Helmet = helmet;
-            dwarf.Shield = shield;
+            knight.Helmet = helmet;
+            
         }
         [Test]
         /*
@@ -25,8 +26,8 @@ namespace Test.Library
         */
         public void AssignEmptyName()
         {
-            this.dwarf.Name = "";
-            Assert.AreEqual(this.dwarf.Name, "Gimli");
+            this.knight.Name = "";
+            Assert.AreEqual(this.knight.Name, "Arturo");
         }
         [Test]
         /*
@@ -35,8 +36,8 @@ namespace Test.Library
         */
         public void AssignNegativeHealth()
         {
-            this.dwarf.Health = -20;
-            Assert.AreEqual(this.dwarf.Health, 0);
+            this.knight.Health = -20;
+            Assert.AreEqual(this.knight.Health, 0);
         }
         [Test]
         /*
@@ -45,8 +46,8 @@ namespace Test.Library
         */
         public void AssignNewName()
         {
-            this.dwarf.Name = "Not Gimli";
-            Assert.AreEqual(this.dwarf.Name, "Not Gimli");
+            this.knight.Name = "not Arturo";
+            Assert.AreEqual(this.knight.Name, "not Arturo");
         }
         [Test]
         /*
@@ -55,33 +56,33 @@ namespace Test.Library
         */
         public void AssignNewHealth()
         {
-            this.dwarf.Health = 150;
-            Assert.AreEqual(this.dwarf.Health, 150);
+            this.knight.Health = 150;
+            Assert.AreEqual(this.knight.Health, 150);
         }
         [Test]
         /*
-            Es necesario probar que la implementación del método ChangeAxe
+            Es necesario probar que la implementación del método ChangeGreatsword
             efectivamente cambie el arco por uno nuevo, ya que esta es la finalidad
             del mismo. Si se cambiara la implementación y este test fallara, entonces
             estaría mal implementado el método.
         */
-        public void ChangeAxe()
+        public void ChangeGreatsword()
         {
-            Axe newAxe = new Axe();
-            this.dwarf.Axe = newAxe;
-            Assert.AreEqual(this.dwarf.Axe, newAxe);
+            Greatsword newGreatsword = new Greatsword();
+            this.knight.Greatsword = newGreatsword;
+            Assert.AreEqual(this.knight.Greatsword, newGreatsword);
         }
         [Test]
         /*
-            Es necesario probar que la implementación del método RemoveAxe
+            Es necesario probar que la implementación del método RemoveGreatsword
             efectivamente elimine el arco del personaje, ya que esta es la finalidad
             del mismo. Si se cambiara la implementación y este test fallara, entonces
             estaría mal implementado el método.
         */
-        public void RemoveAxe()
+        public void RemoveGreatsword()
         {
-            this.dwarf.Axe = null;
-            Assert.AreEqual(this.dwarf.Axe, null);
+            this.knight.Greatsword = null;
+            Assert.AreEqual(this.knight.Greatsword, null);
         }
         [Test]
         /*
@@ -93,8 +94,8 @@ namespace Test.Library
         public void ChangeHelmet()
         {
             Helmet newHelmet = new Helmet();
-            this.dwarf.Helmet = newHelmet;
-            Assert.AreEqual(this.dwarf.Helmet, newHelmet);
+            this.knight.Helmet = newHelmet;
+            Assert.AreEqual(this.knight.Helmet, newHelmet);
         }
         [Test]
         /*
@@ -105,33 +106,33 @@ namespace Test.Library
         */
         public void RemoveHelmet()
         {
-            this.dwarf.Helmet = null;
-            Assert.AreEqual(this.dwarf.Helmet, null);
+            this.knight.Helmet = null;
+            Assert.AreEqual(this.knight.Helmet, null);
         }
         [Test]
         /*
-            Es necesario probar que la implementación del método ChangeShield
+            Es necesario probar que la implementación del método ChangeHeavyArmor
             efectivamente cambie la armadura por una nueva, ya que esta es la finalidad
             del mismo. Si se cambiara la implementación y este test fallara, entonces
             estaría mal implementado el método.
         */
-        public void ChangeShield()
+        public void ChangeHeavyArmor()
         {
-            Shield newShield = new Shield();
-            this.dwarf.Shield = newShield;
-            Assert.AreEqual(this.dwarf.Shield, newShield);
+            HeavyArmor newHeavyArmor = new HeavyArmor();
+            this.knight.HeavyArmor = newHeavyArmor;
+            Assert.AreEqual(this.knight.HeavyArmor, newHeavyArmor);
         }
         [Test]
         /*
-            Es necesario probar que la implementación del método RemoveShield
+            Es necesario probar que la implementación del método RemoveHeavyArmor
             efectivamente elimine la armadura del personaje, ya que esta es la finalidad
             del mismo. Si se cambiara la implementación y este test fallara, entonces
             estaría mal implementado el método.
         */
-        public void RemoveShield()
+        public void RemoveHeavyArmor()
         {
-            this.dwarf.Shield = null;
-            Assert.AreEqual(this.dwarf.Shield, null);
+            this.knight.HeavyArmor = null;
+            Assert.AreEqual(this.knight.HeavyArmor, null);
         }
         [Test]
         /*
@@ -142,9 +143,9 @@ namespace Test.Library
         */
         public void HealCharacterToFullLife()
         {
-            this.dwarf.Health = 50;
-            this.dwarf.Cure();
-            Assert.AreEqual(this.dwarf.Health, 100);
+            this.knight.Health = 50;
+            this.knight.Cure();
+            Assert.AreEqual(this.knight.Health, 100);
         }
         [Test]
         /*
@@ -155,7 +156,7 @@ namespace Test.Library
         */
         public void GetCharacterAttack()
         {
-            Assert.AreEqual(this.dwarf.Axe.Attack, this.dwarf.Attack);
+            Assert.AreEqual(this.knight.Greatsword.Attack, this.knight.Attack);
         }
         [Test]
         /*
@@ -165,8 +166,8 @@ namespace Test.Library
         */
         public void TakeDamageArmorAbsorbsIt()
         {
-            this.dwarf.ReceiveAttack(32);
-            Assert.AreEqual(this.dwarf.Health, 100);
+            this.knight.ReceiveAttack(32);
+            Assert.AreEqual(this.knight.Health, 100);
         }
         [Test]
         /*
@@ -176,8 +177,8 @@ namespace Test.Library
         */
         public void TakeDamageMoreThanAvailableLife()
         {
-            this.dwarf.ReceiveAttack(200);
-            Assert.AreEqual(this.dwarf.Health, 0);
+            this.knight.ReceiveAttack(300);
+            Assert.AreEqual(this.knight.Health, 0);
         }
     }
 }
