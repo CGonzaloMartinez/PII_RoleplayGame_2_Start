@@ -3,7 +3,7 @@ using RoleplayGame;
 
 namespace Test.Library
 {
-    public class AxeTest
+    public class GreatswordTest
     {
 
         [SetUp]
@@ -15,10 +15,10 @@ namespace Test.Library
             Se le asigna un valor para checkear que la implementacion
             del setter no este fallando.
         */
-        public void AxeAttackDamage()
+        public void GreatSwordAttackDamage()
         {
-            Axe axe = new Axe();
-            Assert.AreEqual(axe.Attack, 25);
+            Greatsword greatsword = new Greatsword();
+            Assert.AreEqual(greatsword.Attack, 45);
         }
     }
 }

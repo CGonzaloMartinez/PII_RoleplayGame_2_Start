@@ -5,7 +5,6 @@ namespace Test.Library
 {
     public class HelmetTest
     {
-        private Axe axe;
 
         [SetUp]
         public void Setup()
