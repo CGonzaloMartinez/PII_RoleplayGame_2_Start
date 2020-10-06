@@ -5,7 +5,6 @@ namespace Test.Library
 {
     public class GreatswordTest
     {
-        private Greatsword greatsword;
 
         [SetUp]
         public void Setup()

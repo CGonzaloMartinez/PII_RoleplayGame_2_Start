@@ -5,7 +5,6 @@ namespace Test.Library
 {
     public class HeavyArmorTest
     {
-        private HeavyArmor heavyArmor;
 
         [SetUp]
         public void Setup()
