@@ -8,9 +8,15 @@ namespace Test.Library
      public class SpellsBookTest
     {
 
-        int expectedAttack = 140;
+        private SpellsBook spellsBook;
 
-        int expectedDefense = 140;
+        [SetUp]
+        public void Setup()
+        {
+            spellsBook = new SpellsBook();
+            this.spellsBook.Spells = new Spell[]{ new Spell(), new Spell() };
+        }
+        
 
         [Test]
 
@@ -19,10 +25,7 @@ namespace Test.Library
         */
         public void SpellsBookCorrectAttackTest()
         {
-            SpellsBook book = new SpellsBook();
-            book.Spells = new Spell[]{ new Spell(), new Spell() };
-
-            Assert.AreEqual(expectedAttack, book.Attack);
+            Assert.AreEqual(140, this.spellsBook.Attack);
         }
 
 
@@ -33,10 +36,7 @@ namespace Test.Library
         */
         public void SpellsBookCorrectDefense()
         {
-            SpellsBook book = new SpellsBook();
-            book.Spells = new Spell[]{ new Spell(),new Spell() };
-
-            Assert.AreEqual(expectedDefense, book.Defense);
+            Assert.AreEqual(140, this.spellsBook.Defense);
         }
 
     }

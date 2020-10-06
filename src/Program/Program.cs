@@ -12,7 +12,7 @@ namespace Program
 
             Wizard gandalf = new Wizard("Gandalf");
             IItem magicStaff = new Staff();
-            gandalf.spellsBook = book;
+            gandalf.SpellsBook = book;
             Dwarf gimli = new Dwarf("Gimli");
 
             Console.WriteLine($"Gimli has ❤️ {gimli.Health}");

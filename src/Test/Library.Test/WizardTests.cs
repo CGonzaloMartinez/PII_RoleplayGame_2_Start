@@ -5,11 +5,20 @@ namespace Test.Library
 {
      public class WizardTests
     {
-        string expectedName = "Merlin";
-        int expectedHealth = 100;
-        int expectedInorrectHealth = 0;
 
-        Wizard testingWizard = new Wizard("Merlin");
+        private Wizard testingWizard;
+
+        [SetUp]
+        public void Setup()
+        {
+            this.testingWizard = new Wizard("Merlin");
+            Staff Staff = new Staff();
+            this.testingWizard.Staff = Staff;
+
+            SpellsBook book = new SpellsBook();
+            book.Spells = new Spell[]{ new Spell(), new Spell() };
+            this.testingWizard.SpellsBook = book;
+        }
         
 
         [Test]    
@@ -21,9 +30,10 @@ namespace Test.Library
         */   
         public void WizardCorrectName()
         {
-            testingWizard.Name = "";
-            testingWizard.Name = "Merlin";
-            Assert.AreEqual(expectedName, testingWizard.Name);   
+            this.testingWizard.Name = "Harry Potter";
+
+            string expectedName = "Harry Potter";
+            Assert.AreEqual(expectedName, this.testingWizard.Name);   
         }
 
         [Test]   
@@ -36,9 +46,10 @@ namespace Test.Library
 
         public void WizardInorrectName()
         {
-            Wizard testingWizard = new Wizard("Merlin");
-            testingWizard.Name = "";
-            Assert.AreEqual(expectedName, testingWizard.Name);   
+            this.testingWizard.Name = "";
+
+            string expectedName = "Merlin";
+            Assert.AreEqual(expectedName, this.testingWizard.Name);   
         }
 
         [Test] 
@@ -49,8 +60,8 @@ namespace Test.Library
         */ 
            public void WizardCorrectHealth()
         {
-            Wizard testingWizard = new Wizard("Merlin");
-            Assert.AreEqual(expectedHealth, testingWizard.Health);   
+            int expectedHealth = 100;
+            Assert.AreEqual(expectedHealth, this.testingWizard.Health);   
         }
 
         [Test]  
@@ -61,8 +72,10 @@ namespace Test.Library
         */ 
            public void WizardInorrectHealth()
         {
-            testingWizard.Health = -1;
-            Assert.AreEqual(expectedInorrectHealth, testingWizard.Health);   
+            this.testingWizard.Health = -1;
+
+            int expectedInorrectHealth = 0;
+            Assert.AreEqual(expectedInorrectHealth, this.testingWizard.Health);   
         }
 
 
@@ -73,9 +86,11 @@ namespace Test.Library
         */
         public void TestingCure()
         {
-            testingWizard.Health = 10;
-            testingWizard.Cure();
-            Assert.AreEqual(expectedHealth, testingWizard.Health);
+            this.testingWizard.Health = 10;
+            this.testingWizard.Cure();
+
+            int expectedHealth = 100;
+            Assert.AreEqual(expectedHealth, this.testingWizard.Health);
         }
 
         [Test]
@@ -86,14 +101,9 @@ namespace Test.Library
         */
         public void TestingWizardAttack()
         {
-            SpellsBook book = new SpellsBook();
-            book.Spells = new Spell[]{ new Spell() };
-            testingWizard.spellsBook = book;
-
-            testingWizard.staff = new Staff();
-
-            int expectedAttack = 170;
-            Assert.AreEqual(expectedAttack, testingWizard.Attack);
+            
+            //int expectedAttack = this.testingWizard.Staff.Attack + this.testingWizard.SpellsBook.Attack;
+            Assert.AreEqual(this.testingWizard.SpellsBook.Attack + this.testingWizard.Staff.Attack, this.testingWizard.Attack);
         }
 
         [Test]
@@ -104,19 +114,16 @@ namespace Test.Library
 
         */
 
-        public void TestingReceiveAttack()
+        public void TestingReceiveAttackWithoutChangesInHealth()
         {  
-
-            Staff magicStaff = new Staff();
-            testingWizard.staff = magicStaff;
-
-            SpellsBook book = new SpellsBook();
-            book.Spells = new Spell[]{ new Spell() };
-            testingWizard.spellsBook = book;
-
-            int expectedLife = 100;
             testingWizard.ReceiveAttack(90);
-            Assert.AreEqual(expectedLife, testingWizard.Health);
+            Assert.AreEqual(100, testingWizard.Health);
+        }
+
+        public void TestingReceiveAttackWithChangesInHealth()
+        {  
+            testingWizard.ReceiveAttack(testingWizard.SpellsBook.Defense + testingWizard.Staff.Defense + 10);
+            Assert.AreEqual(90, testingWizard.Health);
         }
 
 
@@ -125,46 +132,37 @@ namespace Test.Library
      
         public void TestingRemoveStaff()
         {
-            Staff magicStaff = new Staff();
-            testingWizard.staff = magicStaff;
-            testingWizard.staff = null;
-            Assert.AreEqual(testingWizard.staff,null);
+            this.testingWizard.Staff = null;
+            Assert.AreEqual(this.testingWizard.Staff,null);
         }
 
 
         
         public void TestingChangeStaff()
         {
-            Staff magicStaff = new Staff();
-            testingWizard.staff = magicStaff;
-
             Staff magicStaff2 = new Staff();
-            testingWizard.staff = magicStaff2;
+            this.testingWizard.Staff = magicStaff2;
           
-            Assert.AreEqual(testingWizard.staff, magicStaff2);
+            Assert.AreEqual(this.testingWizard.Staff, magicStaff2);
         }
 
         [Test]
 
         public void TestingRemoveSpellsBook()
         {
-            SpellsBook magicBook = new SpellsBook();
-            testingWizard.spellsBook = magicBook;
-            testingWizard.spellsBook = null;
-            Assert.AreEqual(testingWizard.spellsBook,null);
+            this.testingWizard.SpellsBook = null;
+            Assert.AreEqual(this.testingWizard.SpellsBook,null);
         }
         
            [Test]
 
         public void TestingChangeSpellsBook()
         {
-            SpellsBook magicBook = new SpellsBook();
-            testingWizard.spellsBook = magicBook;
-
+ 
             SpellsBook magicBook2 = new SpellsBook();
-            testingWizard.spellsBook = magicBook2;
+            this.testingWizard.SpellsBook = magicBook2;
           
-            Assert.AreEqual(testingWizard.spellsBook,magicBook2);
+            Assert.AreEqual(this.testingWizard.SpellsBook,magicBook2);
         }
 
 

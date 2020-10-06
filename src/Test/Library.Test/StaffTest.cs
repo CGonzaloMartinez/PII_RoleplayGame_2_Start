@@ -7,8 +7,13 @@ namespace Test.Library
 
      public class StaffTest
     {
-        int expectedAttack = 100;
-        int expectedDefense = 100;
+        private Staff staff;
+
+        [SetUp]
+        public void Setup()
+        {
+            staff = new Staff();
+        }
 
         [Test]
 
@@ -17,8 +22,7 @@ namespace Test.Library
         */
         public void StaffCorrectAttack()
         {
-            Staff staff = new Staff();
-            Assert.AreEqual(expectedAttack, staff.Attack);
+            Assert.AreEqual(100, staff.Attack);
         }
 
 
@@ -29,8 +33,7 @@ namespace Test.Library
         */
         public void StaffCorrectDefense()
         {
-            Staff staff = new Staff();
-            Assert.AreEqual(expectedDefense, staff.Defense);
+            Assert.AreEqual(100, staff.Defense);
         }
 
     }

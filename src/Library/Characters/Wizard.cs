@@ -2,8 +2,8 @@ namespace RoleplayGame
 {
     public class Wizard: Character
     {
-        public SpellsBook spellsBook {get;set;}
-        public Staff staff           {get;set;}
+        public SpellsBook SpellsBook {get;set;}
+        public Staff Staff           {get;set;}
 
         public Wizard(string name)
         : base (name)
@@ -14,7 +14,7 @@ namespace RoleplayGame
         {
             get
             {
-                return this.spellsBook.Attack + this.staff.Attack;
+                return this.SpellsBook.Attack + this.Staff.Attack;
             }
         }
 
@@ -22,7 +22,7 @@ namespace RoleplayGame
         {
             get
             {
-                return this.spellsBook.Defense + this.staff.Defense;
+                return this.SpellsBook.Defense + this.Staff.Defense;
             }
         }
 

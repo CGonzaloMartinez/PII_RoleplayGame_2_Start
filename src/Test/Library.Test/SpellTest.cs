@@ -7,8 +7,14 @@ namespace Test.Library
 
      public class SpellTest
     {
-        int expectedAttack = 70;
-        int expectedDefense = 70;
+
+        private Spell spell;
+
+        [SetUp]
+        public void Setup()
+        {
+            spell = new Spell();
+        }
 
         [Test]
 
@@ -17,8 +23,7 @@ namespace Test.Library
         */
         public void SpellCorrectAttack()
         {
-            Spell Spell = new Spell();
-            Assert.AreEqual(expectedAttack, Spell.Attack);
+            Assert.AreEqual(70, this.spell.Attack);
         }
 
 
@@ -30,7 +35,7 @@ namespace Test.Library
         public void SpellCorrectDefense()
         {
             Spell Spell = new Spell();
-            Assert.AreEqual(expectedDefense, Spell.Defense);
+            Assert.AreEqual(70, this.spell.Defense);
         }
 
     }
