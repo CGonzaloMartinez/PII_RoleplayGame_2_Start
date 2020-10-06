@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EFBAA053-387D-48AC-B7C6-20079BC9FE10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "src\program\Program.csproj", "{18EC37ED-D3F7-4A11-9A33-137CFD8C52ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "src\Program\Program.csproj", "{18EC37ED-D3F7-4A11-9A33-137CFD8C52ED}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6B305E92-E2FC-43F7-9659-4B0005B635A3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6B305E92-E2FC-43F7-9659-4B0005B635A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library.test", "src\test\library.test\library.test.csproj", "{DFEC9BEA-E201-41BA-97BB-7F6248F61824}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.test", "src\Test\Library.Test\Library.Test.csproj", "{DFEC9BEA-E201-41BA-97BB-7F6248F61824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library", "src\library\library.csproj", "{D5D32629-AD95-4B08-8030-034DADB59C19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "src\Library\Library.csproj", "{D5D32629-AD95-4B08-8030-034DADB59C19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
