@@ -1,61 +1,28 @@
 namespace RoleplayGame
 {
-    /*public class Knight
+    public class Knight : Character
     {
-        private int health = 100;
+        public Greatsword Greatsword{get;set;}
+        public Helmet Helmet{get;set;}
+        public HeavyArmor HeavyArmor{get;set;}
 
-        public Knight(string name)
-        {
-            this.Name = name;
-        }
-
-        public string Name { get; set; }
-
-        public Sword Sword { get; set; }
-
-        public Shield Shield { get; set; }
-
-        public Armor Armor { get; set; }
-
-        public int AttackValue
+        public override int Attack
         {
             get
             {
-                return Sword.AttackValue;
+                return this.Greatsword.Attack;
             }
         }
 
-       public int DefenseValue
-        {
-           get
-            {
-               return Armor.DefenseValue + Shield.DefenseValue;
-            }
-        }
-
-        public int Health
+        public override int Defense
         {
             get
             {
-                return this.health;
-            }
-            private set
-            {
-                this.health = value < 0 ? 0 : value;
+                return this.Helmet.Defense + this.HeavyArmor.Defense;
             }
         }
-
-        public void ReceiveAttack(int power)
+        public Knight(string name) : base(name)
         {
-            if (this.DefenseValue < power)
-            {
-                this.Health -= power - this.DefenseValue;
-            }
         }
-
-        public void Cure()
-        {
-            this.Health = 100;
-        }
-    }*/
+    }
 }
