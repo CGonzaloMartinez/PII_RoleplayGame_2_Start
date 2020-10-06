@@ -12,8 +12,8 @@ namespace Program
 
             Wizard gandalf = new Wizard("Gandalf");
             IItem magicStaff = new Staff();
-
-            Dwarf gimli = new Dwarf("Gimli")
+            gandalf.SpellsBook = book;
+            Dwarf gimli = new Dwarf("Gimli");
 
             Console.WriteLine($"Gimli has ❤️ {gimli.Health}");
             Console.WriteLine($"Gandalf attacks Gimli with ⚔️ {gandalf.Attack}");
